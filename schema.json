@@ -1,0 +1,71 @@
+{
+  "tables": [
+    {
+      "name": "product",
+      "columns": [
+        { "name": "id", "type": "int" },
+        { "name": "name", "type": "varchar" },
+        { "name": "description", "type": "text" },
+        { "name": "SKU", "type": "varchar" },
+        { "name": "category_id", "type": "int" },
+        { "name": "inventory_id", "type": "int" },
+        { "name": "price", "type": "decimal" },
+        { "name": "discount_id", "type": "int" },
+        { "name": "created_at", "type": "timestamp" },
+        { "name": "modified_at", "type": "timestamp" },
+        { "name": "deleted_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "product_category",
+      "columns": [
+        { "name": "id", "type": "int" },
+        { "name": "name", "type": "varchar" },
+        { "name": "description", "type": "text" },
+        { "name": "created_at", "type": "timestamp" },
+        { "name": "modified_at", "type": "timestamp" },
+        { "name": "deleted_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "product_inventory",
+      "columns": [
+        { "name": "id", "type": "int" },
+        { "name": "quantity", "type": "int" },
+        { "name": "created_at", "type": "timestamp" },
+        { "name": "modified_at", "type": "timestamp" },
+        { "name": "deleted_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "name": "discount",
+      "columns": [
+        { "name": "id", "type": "int" },
+        { "name": "name", "type": "varchar" },
+        { "name": "description", "type": "text" },
+        { "name": "discount_percent", "type": "decimal" },
+        { "name": "active", "type": "boolean" },
+        { "name": "created_at", "type": "timestamp" },
+        { "name": "modified_at", "type": "timestamp" },
+        { "name": "deleted_at", "type": "timestamp" }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "table": "product",
+      "foreign_key": "category_id",
+      "references": { "table": "product_category", "column": "id" }
+    },
+    {
+      "table": "product",
+      "foreign_key": "inventory_id",
+      "references": { "table": "product_inventory", "column": "id" }
+    },
+    {
+      "table": "product",
+      "foreign_key": "discount_id",
+      "references": { "table": "discount", "column": "id" }
+    }
+  ]
+}
